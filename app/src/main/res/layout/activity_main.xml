@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background1"
+    tools:context=".MainActivity"
+    tools:layout_editor_absoluteX="2dp"
+    tools:layout_editor_absoluteY="125dp">
+
+    <TextView
+        android:id="@+id/txtville"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ville"
+        android:textColor="@color/black"
+        android:textSize="22dp"
+        tools:layout_editor_absoluteX="184dp"
+        tools:layout_editor_absoluteY="98dp" />
+
+    <ImageView
+        android:id="@+id/img"
+        android:layout_width="138dp"
+        android:layout_height="139dp"
+        tools:layout_editor_absoluteX="136dp"
+        tools:layout_editor_absoluteY="179dp"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Date"
+        android:textColor="@color/black"
+        android:textSize="18dp"
+        tools:layout_editor_absoluteX="47dp"
+        tools:layout_editor_absoluteY="390dp" />
+
+    <TextView
+        android:id="@+id/temp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tep °C"
+        android:textColor="@color/black"
+        android:textSize="35dp"
+        tools:layout_editor_absoluteX="47dp"
+        tools:layout_editor_absoluteY="435dp" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="T° min :"
+        android:textSize="18dp"
+        tools:layout_editor_absoluteX="54dp"
+        tools:layout_editor_absoluteY="522dp" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="T° max :"
+        android:textSize="18dp"
+        tools:layout_editor_absoluteX="54dp"
+        tools:layout_editor_absoluteY="563dp" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pression"
+        android:textSize="18dp"
+        tools:layout_editor_absoluteX="54dp"
+        tools:layout_editor_absoluteY="607dp" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Humidité"
+        android:textSize="18dp"
+        tools:layout_editor_absoluteX="58dp"
+        tools:layout_editor_absoluteY="656dp" />
+
+    <TextView
+        android:id="@+id/tempmin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        tools:layout_editor_absoluteX="209dp"
+        tools:layout_editor_absoluteY="525dp" />
+
+    <TextView
+        android:id="@+id/tempmax"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        tools:layout_editor_absoluteX="207dp"
+        tools:layout_editor_absoluteY="564dp" />
+
+    <TextView
+        android:id="@+id/pression"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        tools:layout_editor_absoluteX="207dp"
+        tools:layout_editor_absoluteY="611dp" />
+
+    <TextView
+        android:id="@+id/humid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        tools:layout_editor_absoluteX="209dp"
+        tools:layout_editor_absoluteY="657dp" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:background="#6BB1E8"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="1dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
