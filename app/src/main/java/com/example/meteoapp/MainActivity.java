@@ -5,16 +5,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
+import androidx.appcompat.widget.Toolbar;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -28,6 +32,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
@@ -41,16 +47,18 @@ public class MainActivity extends AppCompatActivity {
     TextView txthumidite;
     TextView txtdate;
     Toolbar toolbar;
+    Button buLocal;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        toolbar = findViewById(R.id.toolbar);
+        //toolbar = findViewById(R.id.toolbar);
+        //androidx.appcompat.widget.Toolbar toolbar = (androidx.appcompat.widget.Toolbar) findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
         ImageView imgview=findViewById(R.id.img);
-        //imgview.setImageResource(R.drawable.meteo);
+        imgview.setImageResource(R.drawable.meteo);
 
         if (android.os.Build.VERSION.SDK_INT > 9)
         {
@@ -77,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
         txtpression=findViewById(R.id.pression);
         txthumidite=findViewById(R.id.humid);
         txtdate=findViewById(R.id.date);
+        buLocal=findViewById(R.id.bu_local);
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -103,11 +112,19 @@ public class MainActivity extends AppCompatActivity {
 
                             JSONObject jsonObject=new JSONObject(response);
 
-                            Date date=new Date(jsonObject.getLong("" +
-                                    "")*1000);
-                            SimpleDateFormat simpleDateFormat=
-                                    new SimpleDateFormat("dd-MMM-yyyy' T 'HH:mm");
-                            String dateString=simpleDateFormat.format(date);
+                            //Date date=new Date(jsonObject.getLong("" +
+                                    //"")*1000);
+                            //SimpleDateFormat simpleDateFormat=
+                                    //new SimpleDateFormat("dd-MMM-yyyy' T 'HH:mm");
+                            //String dateString=simpleDateFormat.format(date);
+                            // Create a SimpleDateFormat object with the desired format
+                            SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy' T 'HH:mm");
+
+                            // Get the current date
+                            Date currentDate = new Date();
+
+                            // Format the current date using the SimpleDateFormat object
+                            String formattedDate = formatter.format(currentDate);
 
                             JSONObject main=jsonObject.getJSONObject("main");
                             int Temp=(int)(main.getDouble("temp")-273.15);
@@ -115,16 +132,34 @@ public class MainActivity extends AppCompatActivity {
                             int TempMax=(int)(main.getDouble("temp_max")-273.15);
                             int Pression=(int)(main.getDouble("pressure"));
                             int Humidite=(int)(main.getDouble("humidity"));
+                            int longitude = (int)(main.getDouble("coord.lon"));
+                            int latitude = (int)(main.getDouble("coord.lat"));
 
                             JSONArray weather=jsonObject.getJSONArray("weather");
                             String meteo=weather.getJSONObject(0).getString("main");
 
-                            txtdate.setText(dateString);
+                            txtdate.setText(formattedDate);
                             tmp.setText(String.valueOf(Temp+"°C"));
                             tmpmin.setText(String.valueOf(TempMin)+"°C");
                             tmpmax.setText(String.valueOf(TempMax)+"°C");
                             txtpression.setText(String.valueOf(Pression+" hPa"));
                             txthumidite.setText(String.valueOf(Humidite)+ "%");
+
+                            buLocal.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    Intent i = new Intent(MainActivity.this, MapsActivity.class);
+                                    int longi = longitude;
+                                    int lati = latitude;
+                                    String place = query;
+                                    i.putExtra("longi",longi);
+                                    i.putExtra("lati",lati);
+                                    i.putExtra("place", place);
+
+                                    startActivity(i);
+                                    finish();
+                                }
+                            });
 
                             Log.i("Weather","----------------------------------------------");
                             Log.i("Meteo",meteo);
