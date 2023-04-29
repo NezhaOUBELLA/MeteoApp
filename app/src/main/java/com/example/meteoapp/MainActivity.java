@@ -132,8 +132,11 @@ public class MainActivity extends AppCompatActivity {
                             int TempMax=(int)(main.getDouble("temp_max")-273.15);
                             int Pression=(int)(main.getDouble("pressure"));
                             int Humidite=(int)(main.getDouble("humidity"));
-                            int longitude = (int)(main.getDouble("coord.lon"));
-                            int latitude = (int)(main.getDouble("coord.lat"));
+
+
+                            JSONObject coordObject = jsonObject.getJSONObject("coord");
+                            int longitude = (int) coordObject.getDouble("lon");
+                            int latitude = (int) coordObject.getDouble("lat");
 
                             JSONArray weather=jsonObject.getJSONArray("weather");
                             String meteo=weather.getJSONObject(0).getString("main");
