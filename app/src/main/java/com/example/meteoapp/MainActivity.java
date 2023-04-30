@@ -135,8 +135,8 @@ public class MainActivity extends AppCompatActivity {
 
 
                             JSONObject coordObject = jsonObject.getJSONObject("coord");
-                            int longitude = (int) coordObject.getDouble("lon");
-                            int latitude = (int) coordObject.getDouble("lat");
+                            double longitude = (double) coordObject.getDouble("lon");
+                            double latitude = (double) coordObject.getDouble("lat");
 
                             JSONArray weather=jsonObject.getJSONArray("weather");
                             String meteo=weather.getJSONObject(0).getString("main");
@@ -152,8 +152,8 @@ public class MainActivity extends AppCompatActivity {
                                 @Override
                                 public void onClick(View view) {
                                     Intent i = new Intent(MainActivity.this, MapsActivity.class);
-                                    int longi = longitude;
-                                    int lati = latitude;
+                                    double longi = longitude;
+                                    double lati = latitude;
                                     String place = query;
                                     i.putExtra("longi",longi);
                                     i.putExtra("lati",lati);

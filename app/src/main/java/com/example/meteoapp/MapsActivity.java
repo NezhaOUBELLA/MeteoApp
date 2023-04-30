@@ -29,17 +29,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        int longi = Integer.parseInt(getIntent().getStringExtra("longitude"));
-        int lati = Integer.parseInt(getIntent().getStringExtra("latitude"));
+        double longi = getIntent().getDoubleExtra("longi",0.0);
+        double lati = getIntent().getDoubleExtra("lati",0.0);
         String place = getIntent().getStringExtra("place");
         mMap = googleMap;
-        LatLng twincenter = new LatLng(lati, longi);
-        mMap.addMarker(new MarkerOptions().position(twincenter).title(place));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(twincenter));
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(twincenter,10));
+        LatLng localisation = new LatLng(lati, longi);
+        mMap.addMarker(new MarkerOptions().position(localisation).title(place));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(localisation));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(localisation,10));
         mMap.getUiSettings().setZoomControlsEnabled(true);
         CircleOptions circleOptions = new CircleOptions();
-        circleOptions.center(twincenter);
+        circleOptions.center(localisation);
         circleOptions.radius(700);
         circleOptions.fillColor(Color.TRANSPARENT);
         circleOptions.strokeWidth(6);
